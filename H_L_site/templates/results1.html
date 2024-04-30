@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+<body>
+    <h1>Query Results</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Date of Birth</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Place of Residence</th>
+            <th>Goal</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.Ім_я }}</td>
+            <td>{{ result.Прізвище }}</td>
+            <td>{{ result.Дата_народження }}</td>
+            <td>{{ result.Стать }}</td>
+            <td>{{ result.Електронна_пошта }}</td>
+            <td>{{ result.Місце_проживання }}</td>
+            <td>{{ result.Ціль }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

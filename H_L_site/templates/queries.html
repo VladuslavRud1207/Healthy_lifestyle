@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Запити</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333333;
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title {
+            font-size: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            margin-right: 20px;
+        }
+
+        .dropbtn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropbtn:hover {
+            background-color: #45a049;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 8px 0;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .query-text {
+            padding: 20px;
+            float: right;
+            width: 70%;
+            box-sizing: border-box;
+            display: none;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 20px;
+            margin-right: 20px;
+            background-color: #fff;
+        }
+
+
+        .button-container {
+        display: block;
+        }
+
+        .dynamic-button {
+          margin: 5px 0; /* Змінено з 50px на 5px 0 */
+          padding: 10px 20px;
+          font-size: 16px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 10px;
+          cursor: pointer;
+          display: block;
+
+          width: 200px;
+        }
+
+        #additionalButtons {
+          margin-top: 20px; /* Доданий margin-top для контейнера кнопок */
+}
+
+
+        .dynamic-button:hover {
+        background-color: #0056b3;
+        }
+
+
+
+    </style>
+
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">Здоровий спосіб життя</div>
+        <div class="nav-links">
+            <a href="/">Головна</a>
+            <a href="/tables">Таблиці</a>
+        </div>
+    </div>
+    <div class="content">
+        <div class="dropdown">
+            <button class="dropbtn" id="selectedQueryBtn"  data-query-id="0">Вибрати запит</button>
+            <div class="dropdown-content">
+
+                <a onclick="showQuery(1)">1) Визначити Користувача</a>
+                <a onclick="showQuery(2)">2) Визначити Ціль</a>
+                <a onclick="showQuery(3)">3) Визначити Антропометричні дані</a>
+                <a onclick="showQuery(4)">4) Визначити Фізичну активність</a>
+                <a onclick="showQuery(5)">5) Визначити Тренування</a>
+                <a onclick="showQuery(6)">6) Визначити Харчування</a>
+                <a onclick="showQuery(7)">7) Визначити Журнал самопочуття</a>
+                <a onclick="showQuery(8)">8) Визначити Сон</a>
+            </div>
+            <div class="dropdown">
+        </div>
+<div id="additionalButtons"></div>
+
+            <style>
+                .dropbtn {
+                margin: 30px 0px 0px 100px; /* Змінення відступів кнопки */
+                padding: 15px 30px; /* Зміна величини внутрішнього відступу кнопки */
+                font-size: 18px; /* Зміна розміру тексту на кнопці */
+                }
+            </style>
+        </div>
+        <div class="query-text" id="query1">1) Визначити Користувача (ім’я,  прізвище, дата народження, стать, електронна пошта) за місцем проживання та вказаною Ціллю.</div>
+        <div class="query-text" id="query2">2) Визначити Ціль (опис цілі, дата початку, дата завершення, статус) за типом цілі та вказаними Антропометричними даними.</div>
+        <div class="query-text" id="query3">3) Визначити Антропометричні дані (зріст, вага, кров’яний тиск, відсоток жиру в тілі, індекс маси тіла) за рівнем холестерину та вказаною Фізичною активністю.</div>
+        <div class="query-text" id="query4">4) Визначити Фізичну активність (тип активності, тривалість, кількість спалених калорій, дата проведення активності) за кількістю разів на тиждень та вказаним Тренуванням.</div>
+        <div class="query-text" id="query5">5) Визначити Тренування (назва тренування, опис тренування, домінуюча група м’язів, кількість повторів, кількість підходів, необхідне обладнання) за рівнем складності та вказаним Харчуванням.</div>
+        <div class="query-text" id="query6">6) Визначити Харчування (кількість калорій, вміст білків, вміст жирів, вміст вуглеводів)  за вмістом клітковини та вказаним Журналом самопочуття.</div>
+        <div class="query-text" id="query7">7) Визначити Журнал самопочуття (дата, настрій, рівень енергії,  прийняті ліки) за симптомом та вказаним Сном.</div>
+        <div class="query-text" id="query8">8) Визначити Сон (дата сну, час засинання, час пробудження, тривалість сну) за якістю сну та вказаним Користувачем.</div>
+    </div>
+
+<title>Query Page</title>
+</head>
+<body>
+    <h1>Перший HTML файл</h1>
+    {% include 'dropdowns1.html' %}
+
+    <h1>Другий HTML файл</h1>
+    {% include 'results1.html' %}
+
+</body>
+
+
+
+    <script>
+        function showQuery(id) {
+            var queryText = document.getElementById("query" + id);
+            var allQueries = document.querySelectorAll(".query-text");
+            for (var i = 0; i < allQueries.length; i++) {
+                allQueries[i].style.display = "none";
+            }
+            queryText.style.display = "block";
+            document.getElementById("selectedQueryBtn").innerText = "Запит " + id;
+        }
+    </script>
+    <script>
+        function showQuery(id) {
+
+    // Очистити попередні динамічні кнопки
+    var additionalButtonsContainer = document.getElementById("additionalButtons");
+    additionalButtonsContainer.innerHTML = "";
+
+    // Приховати попередній текст запиту
+    var allQueries = document.querySelectorAll(".query-text");
+    for (var i = 0; i < allQueries.length; i++) {
+        allQueries[i].style.display = "none";
+    }
+
+    // Створювати динамічні кнопки на основі вибраного запиту
+    if (id === 1) {
+      createDynamicButton("Місце проживання");
+      createDynamicButton("Ціль");
+      document.getElementById("query1").style.display = "block";
+    } else if (id === 2) {
+      createDynamicButton("Тип цілі");
+      createDynamicButton("Зріст");
+      createDynamicButton("Вага");
+      document.getElementById("query2").style.display = "block";
+    } else if (id === 3) {
+      createDynamicButton("Рівень холестерину");
+      createDynamicButton("Тип активності");
+      createDynamicButton("Дата проведення активності");
+      document.getElementById("query3").style.display = "block";
+    } else if (id === 4) {
+      createDynamicButton("Рівень холестерину");
+      createDynamicButton("Тренування");
+      document.getElementById("query4").style.display = "block";
+    } else if (id === 5) {
+      createDynamicButton("Рівень складності");
+      createDynamicButton("Кількість калорій");
+      createDynamicButton("Вміст білків");
+      document.getElementById("query5").style.display = "block";
+    } else if (id === 6) {
+      createDynamicButton("Вміст клітковини");
+      createDynamicButton("Дата");
+      createDynamicButton("Настрій");
+      document.getElementById("query6").style.display = "block";
+    } else if (id === 7) {
+      createDynamicButton("Симптом");
+      createDynamicButton("Дата сну");
+      createDynamicButton("Час засинання");
+      createDynamicButton("Час пробудження");
+      document.getElementById("query7").style.display = "block";
+    } else if (id === 8) {
+      createDynamicButton("Якість сну");
+      createDynamicButton("Ім'я");
+      createDynamicButton("Прізвище");
+      document.getElementById("query8").style.display = "block";
+    }
+
+    // Оновити текст кнопки "Вибрати запит"
+    document.getElementById("selectedQueryBtn").innerText = "Запит " + id;
+
+    // Функція для створення динамічної кнопки
+    function createDynamicButton(text) {
+      var button = document.createElement("button");
+      button.classList.add("dynamic-button");
+      button.textContent = text;
+      // Додати обробник події до кнопки (наприклад, для надсилання даних до бази даних)
+      button.addEventListener("click", function() {
+        // ... Ваш код для обробки події кнопки ...
+      });
+      additionalButtonsContainer.appendChild(button);
+    }
+
+    // Додати кнопку до контейнера
+    var container = document.getElementById("query" + id);
+    container.appendChild(button);
+  }
+
+
+    </script>
+     <script>
+        // Оновлений JavaScript код
+        document.addEventListener("DOMContentLoaded", function() {
+          // Отримати кнопку "Виконати запит" і випадаючий список
+          var dropbtn = document.getElementById("selectedQueryBtn");
+          var dropdownContent = document.querySelector(".dropdown-content");
+
+          // Додати обробник подій для показу випадаючого списку при наведенні курсора на кнопку або на сам список
+          dropbtn.addEventListener("mouseenter", function() {
+            dropdownContent.style.display = "block";
+          });
+
+          dropdownContent.addEventListener("mouseenter", function() {
+            dropdownContent.style.display = "block";
+          });
+
+          // Додати обробник подій для приховування випадаючого списку при відведенні курсора зі списку або з кнопки
+          dropbtn.addEventListener("mouseleave", function() {
+            dropdownContent.style.display = "none";
+          });
+
+          dropdownContent.addEventListener("mouseleave", function() {
+            dropdownContent.style.display = "none";
+          });
+        });
+    </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dropdowns</title>
+</head>
+<body>
+    <form method="GET">
+        <label for="Місце_проживання">Місце проживання:</label>
+        <select name="Місце_проживання" id="Місце_проживання">
+            <option value="">Оберіть місце проживання</option>
+            {% for place in places_of_residence %}
+                <option value="{{ place }}">{{ place }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <label for="Ціль">Ціль:</label>
+        <select name="Ціль" id="Ціль">
+            <option value="">Оберіть ціль</option>
+            {% for goal in goals %}
+                <option value="{{ goal }}">{{ goal }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit">Показати результати</button>
+    </form>
+</body>
+</html>

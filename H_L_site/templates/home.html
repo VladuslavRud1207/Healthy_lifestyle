@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .background {
+            background-image: url('photo.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Задній план */
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 6%; /* Змінено відстань від верху */
+            margin-bottom: 50px;
+        }
+
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        .button:hover {
+         background-color: #45a049;
+        }
+
+        h1 {
+            color: black;
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1>Головна</h1>
+        <div class="buttons">
+            <a href="{% url 'queries' %}" class="button">Запити</a>
+            <a href="{% url 'tables' %}" class="button">Таблиці</a>
+        </div>
+    </div>
+</body>
+</html>
